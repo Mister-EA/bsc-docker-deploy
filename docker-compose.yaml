@@ -1,0 +1,26 @@
+version: '3'
+services:
+  alice:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+      args:
+        AUTHORITY_NAME: alice
+    image: bsc_validator_alice:latest
+
+  bob:
+      build: 
+        context: .
+        dockerfile: Dockerfile
+        args:
+          AUTHORITY_NAME: bob
+      image: bsc_validator_bob:latest
+
+
+  charlie:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+      args:
+        AUTHORITY_NAME: charlie
+    image: bsc_validator_charlie:latest
