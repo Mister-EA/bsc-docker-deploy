@@ -42,27 +42,17 @@ COPY ./config.toml  .
 RUN mkdir bls
 RUN mkdir keystore
 
-COPY ./keys/password.txt .
-
 RUN apk add --no-cache jq
 
 EXPOSE 8545 6060 30311 30311/udp
 
-
-ARG AUTHORITY_NAME="alice"
-ENV AUTHORITY_NAME=${AUTHORITY_NAME}
-
-RUN echo ${AUTHORITY_NAME}
-
-
-COPY ./keys/${AUTHORITY_NAME}/bls bls
-COPY ./keys/${AUTHORITY_NAME}/consensus/keystore keystore
-
 # init genesis
 RUN bin/geth init --datadir . genesis.json
-
 RUN rm -f geth/nodekey
-COPY ./keys/${AUTHORITY_NAME}/nodekey ./geth
+
+ENV AUTHORITY_NAME "alice"
+
+RUN echo ${AUTHORITY_NAME}
 
 # Run validator
 

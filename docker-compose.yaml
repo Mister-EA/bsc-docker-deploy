@@ -1,26 +1,23 @@
 version: '3'
 services:
   alice:
-    build: 
-      context: .
-      dockerfile: Dockerfile
-      args:
-        AUTHORITY_NAME: alice
-    image: bsc_validator_alice:latest
-
+    image: bsc_validator:latest
+    environment:
+     - AUTHORITY_NAME=alice
+    volumes:
+      - ./keys/alice:/data/keys
+      - ./keys/password.txt:/data/keys/password.txt
   bob:
-      build: 
-        context: .
-        dockerfile: Dockerfile
-        args:
-          AUTHORITY_NAME: bob
-      image: bsc_validator_bob:latest
-
-
+    image: bsc_validator:latest
+    environment:
+     - AUTHORITY_NAME=bob
+    volumes:
+      - ./keys/bob:/data/keys
+      - ./keys/password.txt:/data/keys/password.txt
   charlie:
-    build: 
-      context: .
-      dockerfile: Dockerfile
-      args:
-        AUTHORITY_NAME: charlie
-    image: bsc_validator_charlie:latest
+    image: bsc_validator:latest
+    environment:
+     - AUTHORITY_NAME=charlie
+    volumes:
+      - ./keys/charlie:/data/keys
+      - ./keys/password.txt:/data/keys/password.txt

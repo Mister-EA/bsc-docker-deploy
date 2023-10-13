@@ -1,1 +1,0 @@
-docker exec -it bsc-node  /bin/bash

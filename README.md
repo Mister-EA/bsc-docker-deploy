@@ -36,7 +36,12 @@ Deploy a local cluster of BSC validators using Docker.
     bash generate_genesis.sh
     ```
 
+- Build the docker image:
+    ```bash
+    bash docker_build.sh
+    ```
+
 - Run the cluster:
    ```bash
-   docker-compose up --build
+   docker-compose up
    ```
