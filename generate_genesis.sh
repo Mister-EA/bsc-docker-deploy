@@ -1,13 +1,23 @@
 #!/usr/bin/env bash
+
 basedir=$(cd `dirname $0`; pwd)
 workspace=${basedir}
 source ${workspace}/.env
 keys_dir_name="keys"
 authorities=("alice" "bob" "charlie" "dave" "eve") # predefined authorities
 
+# Get the number of validators to create from command line argument, default to number of authorities
+num_validators=${1:-${#authorities[@]}}
+
+# Check if the number of validators is greater than the number of authorities
+if (( num_validators > ${#authorities[@]} )); then
+    echo "Error: The number of validators requested (${num_validators}) is greater than the number of authorities available (${#authorities[@]})."
+    exit 1
+fi
+
 rm -f ${workspace}/bsc-genesis-contract/validators.conf
 
-for ((i=0;i<${#authorities[@]};i++));do
+for ((i=0;i<num_validators;i++));do
     cd ${workspace}/${keys_dir_name}/${authorities[i]}
     cons_addr="0x$(cat consensus/keystore/* | jq -r .address)"
     fee_addr="0x$(cat fee/keystore/* | jq -r .address)"
