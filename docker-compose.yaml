@@ -21,3 +21,17 @@ services:
     volumes:
       - ./keys/charlie:/data/keys
       - ./keys/password.txt:/data/keys/password.txt
+  dave:
+    image: bsc_validator:latest
+    environment:
+     - AUTHORITY_NAME=dave
+    volumes:
+      - ./keys/dave:/data/keys
+      - ./keys/password.txt:/data/keys/password.txt
+  eve:
+    image: bsc_validator:latest
+    environment:
+     - AUTHORITY_NAME=eve
+    volumes:
+      - ./keys/eve:/data/keys
+      - ./keys/password.txt:/data/keys/password.txt

@@ -36,6 +36,13 @@ Deploy a local cluster of BSC validators using Docker.
     bash generate_genesis.sh
     ```
 
+  This will generate the genesis file with all 5 authorities as validators. If you want a custom number of validators (up to 5) you can pass the number as an argument. E.g.
+
+     ```bash
+    bash generate_genesis.sh 3
+    ```
+    This will register 3 validators: Alice , Bob and Charlie.
+
 - Build the docker image:
     ```bash
     bash docker_build.sh
@@ -45,3 +52,12 @@ Deploy a local cluster of BSC validators using Docker.
    ```bash
    docker-compose up
    ```
+
+    This will run all 5 validators.  
+
+    If you want to run certain validators (e.g. Alice, Charlie and Eve) you can pass the names as arguments to docker compose:
+
+    ```bash
+    docker-compose up alice charlie eve
+    ```
+
