@@ -9,6 +9,8 @@ keys_dir_name="keys" # directory to store all the keys in
 authorities=("alice" "bob" "charlie" "dave" "eve")
 size=${#authorities[@]}
 
+source ${workspace}/.env
+
 function generate_keys() {
     rm -rf ${workspace}/${keys_dir_name}
     mkdir -p ${keys_dir_name}
