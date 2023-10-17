@@ -3,9 +3,9 @@ set -e
 
 # copy keys
 cp /data/keys/password.txt /app
-cp -R /data/keys/bls /app
-cp -R /data/keys/consensus/keystore /app
-cp -R /data/keys/nodekey /app/geth
+cp -R /data/keys/${AUTHORITY_NAME}/bls /app
+cp -R /data/keys/${AUTHORITY_NAME}/consensus/keystore /app
+cp -R /data/keys/${AUTHORITY_NAME}/nodekey /app/geth
 
 
 CONS_ADDR="0x$(cat keystore/* | jq -r .address)"

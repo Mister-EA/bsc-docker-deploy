@@ -3,6 +3,16 @@ FROM golang:1.19-alpine
 
 RUN apk add --no-cache make cmake gcc musl-dev linux-headers git bash build-base libc-dev
 
+RUN mkdir -p /app/bin 
+
+# Beacon Chain
+COPY ./node /node
+WORKDIR /node
+RUN make build
+RUN cp ./build/tbnbcli /app/bin/tbnbcli
+RUN cp ./build/bnbchaind /app/bin/bnbchaind
+
+
 ADD ./bsc /bsc
 ENV CGO_CFLAGS="-O -D__BLST_PORTABLE__" 
 ENV CGO_CFLAGS_ALLOW="-O -D__BLST_PORTABLE__"
@@ -21,17 +31,10 @@ RUN make geth
 RUN go build -o ./build/bin/bootnode ./cmd/bootnode
 
 # Copy the binary to a stable location
-RUN mkdir -p /app/bin \
-  && cp ./build/bin/geth /app/bin/geth \
+RUN cp ./build/bin/geth /app/bin/geth \
   && cp ./build/bin/bootnode /app/bin/bootnode
 
 
-# Beacon Chain
-COPY ./node /node
-WORKDIR /node
-RUN make build
-RUN cp ./build/tbnbcli /app/bin/tbnbcli
-RUN cp ./build/bnbchaind /app/bin/bnbchaind
 
 
 WORKDIR /app

@@ -5,33 +5,43 @@ services:
     environment:
      - AUTHORITY_NAME=alice
     volumes:
-      - ./keys/alice:/data/keys
-      - ./keys/password.txt:/data/keys/password.txt
+      - type: bind
+        source: ./keys/password.txt
+        target: /data/keys/password.txt
+      - ./keys/alice:/data/keys/alice
   bob:
     image: bsc_validator:latest
     environment:
      - AUTHORITY_NAME=bob
     volumes:
-      - ./keys/bob:/data/keys
-      - ./keys/password.txt:/data/keys/password.txt
+      - type: bind
+        source: ./keys/password.txt
+        target: /data/keys/password.txt
+      - ./keys/bob:/data/keys/bob
   charlie:
     image: bsc_validator:latest
     environment:
      - AUTHORITY_NAME=charlie
     volumes:
-      - ./keys/charlie:/data/keys
-      - ./keys/password.txt:/data/keys/password.txt
+      - type: bind
+        source: ./keys/password.txt
+        target: /data/keys/password.txt
+      - ./keys/charlie:/data/keys/charlie
   dave:
     image: bsc_validator:latest
     environment:
      - AUTHORITY_NAME=dave
     volumes:
-      - ./keys/dave:/data/keys
-      - ./keys/password.txt:/data/keys/password.txt
+      - type: bind
+        source: ./keys/password.txt
+        target: /data/keys/password.txt
+      - ./keys/dave:/data/keys/dave
   eve:
     image: bsc_validator:latest
     environment:
      - AUTHORITY_NAME=eve
     volumes:
-      - ./keys/eve:/data/keys
-      - ./keys/password.txt:/data/keys/password.txt
+      - type: bind
+        source: ./keys/password.txt
+        target: /data/keys/password.txt
+      - ./keys/eve:/data/keys/eve
