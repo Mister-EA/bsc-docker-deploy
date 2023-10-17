@@ -1,3 +1,5 @@
+mkdir -p bin
+
 # build bsc
 cd bsc && make geth
 go build -o ./build/bin/bootnode ./cmd/bootnode
