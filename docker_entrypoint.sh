@@ -21,7 +21,7 @@ CONS_ADDR="0x$(cat keystore/* | jq -r .address)"
     --metrics --metrics.addr localhost --metrics.port 6060 --metrics.expensive \
     --gcmode archive --syncmode=full --mine --vote --monitor.maliciousvote \
     --port 30311 \
-    --bootnodes "enode://dfd215eac0f0bd38a6313b7a6c4d50ae0bec815ecb76f71dc1469e4f5d0970605b8db5834e7f2ac49912b825ea6985340c7e445d4fcbb8c250a4645a4a6fcbe7@alice:30311" \
+    --bootnodes "enode://6f7354f6dbb692c6995b4cc1df9d7d9ac334d0d94e53f7b1dcfe0d81a57fc869e896778e9b702c30dbe6446708be9fbdf29b715fb6a6a44c973c8f5b3df7f60c@alice:30311" \
     > /app/bsc-node.log 2>&1 &
 
 sleep 4
